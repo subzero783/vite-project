@@ -1,6 +1,11 @@
 import mongoose from 'mongoose'
 import { describe, expect, test } from '@jest/globals'
-import { createPost } from '../services/posts.js'
+import {
+  createPost,
+  // listAllPosts,
+  // listPostsByAuthor,
+  // listPostsByTag,
+} from '../services/posts.js'
 import { Post } from '../db/models/post.js'
 
 describe('creating posts', () => {
@@ -20,6 +25,7 @@ describe('creating posts', () => {
     expect(foundPost.createdAt).toBeInstanceOf(Date)
     expect(foundPost.updatedAt).toBeInstanceOf(Date)
   })
+
   // Test 2
   test('without title should fail', async () => {
     const post = {
@@ -34,6 +40,7 @@ describe('creating posts', () => {
       expect(err.message).toContain('`title` is required')
     }
   })
+
   // Test 3
   test('with minimal parameters should succeed', async () => {
     const post = {
@@ -43,3 +50,14 @@ describe('creating posts', () => {
     expect(createdPost._id).toBeInstanceOf(mongoose.Types.ObjectId)
   })
 })
+
+// const samplePosts = [
+//   { title: 'Learning Redux', author: 'Daniel Bugl', tags: ['redux'] },
+//   { title: 'Learn React Hooks', author: 'Daniel Bugl', tags: ['react'] },
+//   {
+//     title: 'Full-Stack React Projects',
+//     author: 'Daniel Bugl',
+//     tags: ['react', 'nodejs'],
+//   },
+//   { title: 'Guide to TypeScript' },
+// ]
